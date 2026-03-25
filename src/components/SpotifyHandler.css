@@ -1,0 +1,24 @@
+.spotify-player-wrapper {
+  width: 100%;
+  max-width: 600px; /* Ajusta el ancho a tu gusto */
+  margin: 20px auto;
+  border-radius: 12px;
+  overflow: hidden; /* Corta todo lo que se salga */
+  background: #181818;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* La máscara que oculta la izquierda */
+.spotify-player-mask {
+  margin-left: -70%; /* EMPUJA la info del artista hacia afuera (ajusta este número si hace falta) */
+  width: calc(
+    100% + 200px
+  ); /* Compensa el margen para que no quede un hueco vacío a la derecha */
+}
+
+/* Opcional: Si quieres ocultar también el logo de Spotify de la derecha */
+.spotify-player-mask iframe {
+  clip-path: inset(
+    0 50px 0 0
+  ); /* Recorta 50px de la derecha si fuera necesario */
+}

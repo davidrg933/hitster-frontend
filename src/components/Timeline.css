@@ -1,0 +1,68 @@
+.timeline-container {
+  margin-top: 40px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  width: 100%;
+}
+
+.timeline-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 20px 10px;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.insert-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px dashed #1db954;
+  background: transparent;
+  color: #1db954;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.insert-btn:hover:not(.disabled) {
+  background: #1db954;
+  color: white;
+  transform: scale(1.1);
+}
+
+.insert-btn.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.timeline-card-small {
+  width: 80px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.timeline-card-small img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.year-label {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1db954;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: bold;
+}
