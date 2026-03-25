@@ -413,6 +413,6 @@ body {
   overflow: hidden;
 }
 
-._ContentRSWP img {
-  display: none !important; /* Oculta la carátula del álbum */
+.rswp__active {
+  display: none !important;
 }
