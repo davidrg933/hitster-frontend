@@ -5,10 +5,11 @@ import Timeline from "./components/Timeline";
 import "./index.css";
 
 function App() {
-  const WIN_CONDITION = 10; // Canciones para ganar
+  const WIN_CONDITION = 10;
 
   // --- ESTADOS ---
   const [gameStarted, setGameStarted] = useState(false);
+  const [audioReady, setAudioReady] = useState(false); // NUEVO: Para habilitar audio en móvil
   const [winner, setWinner] = useState(null);
   const [deck, setDeck] = useState([]);
   const [players, setPlayers] = useState([
@@ -61,10 +62,8 @@ function App() {
         "https://hitster-backend-production.up.railway.app/api/all-songs",
       );
       const allSongs = await res.json();
-
       const shuffled = shuffleDeck([...allSongs]);
 
-      // Repartimos carta inicial a cada uno
       const updatedPlayers = [...players];
       for (let i = 0; i < updatedPlayers.length; i++) {
         updatedPlayers[i].timeline = [shuffled.pop()];
@@ -74,13 +73,18 @@ function App() {
       setPlayers(updatedPlayers);
       setGameStarted(true);
       setIsLoading(false);
-
-      // Sacamos la primera para jugar
-      drawNextSong(shuffled, 0);
+      setMessage("¡Mazo listo! Activa el audio para empezar.");
     } catch (e) {
       setMessage("Error al conectar con el servidor.");
       setIsLoading(false);
     }
+  };
+
+  // --- ACTIVAR AUDIO Y EMPEZAR ---
+  const enableAudioAndStart = () => {
+    setAudioReady(true);
+    // Sacamos la primera para jugar justo después del clic del usuario
+    drawNextSong(deck, 0);
   };
 
   // --- ROBAR CARTA + REFRESCO DE TOKEN ---
@@ -91,7 +95,6 @@ function App() {
     }
 
     try {
-      // Refrescamos el token para esta carta específica
       const tokenRes = await fetch(
         "https://hitster-backend-production.up.railway.app/api/refresh-token",
       );
@@ -99,8 +102,6 @@ function App() {
 
       const nextDeck = [...currentDeck];
       const nextSong = nextDeck.pop();
-
-      // Inyectamos el token fresco
       const songWithToken = { ...nextSong, token: tokenData.token };
 
       setDeck(nextDeck);
@@ -165,6 +166,7 @@ function App() {
     );
   }
 
+  // PANTALLA INICIAL (LOBBY)
   if (!gameStarted) {
     return (
       <div className="lobby-container">
@@ -204,6 +206,25 @@ function App() {
     );
   }
 
+  // PANTALLA INTERMEDIA PARA ACTIVAR AUDIO (CRUCIAL PARA MÓVIL)
+  if (gameStarted && !audioReady) {
+    return (
+      <div className="lobby-container">
+        <h1>¡Todo listo! 🎶</h1>
+        <div className="setup-box">
+          <p>
+            Para escuchar la música en el móvil, necesitamos que actives el
+            reproductor.
+          </p>
+          <button className="start-btn" onClick={enableAudioAndStart}>
+            ACTIVAR AUDIO Y JUGAR
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // JUEGO PRINCIPAL
   return (
     <div className="app-container-grid">
       <main className="timelines-area">
