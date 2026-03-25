@@ -58,7 +58,7 @@ function App() {
     setMessage("Descargando playlist completa de Spotify...");
     try {
       const res = await fetch(
-        "https://tu-app-de-railway.up.railway.app/api/all-songs",
+        "https://hitster-backend-production.up.railway.app/api/all-songs",
       );
       const allSongs = await res.json();
 
@@ -93,7 +93,7 @@ function App() {
     try {
       // Refrescamos el token para esta carta específica
       const tokenRes = await fetch(
-        "https://tu-app-de-railway.up.railway.app/api/refresh-token",
+        "https://hitster-backend-production.up.railway.app/api/refresh-token",
       );
       const tokenData = await tokenRes.json();
 
