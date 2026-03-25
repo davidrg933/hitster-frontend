@@ -317,78 +317,68 @@ body {
   .app-container-grid {
     display: flex;
     flex-direction: column;
-    height: 100dvh; /* Altura dinámica real de móvil */
+    height: 100dvh;
     overflow: hidden;
-    background: #121212;
   }
 
-  /* ZONA SUPERIOR: Líneas temporales con scroll */
+  /* ZONA DE ARRIBA: Ahora forzamos que use el 50% de la pantalla */
   .timelines-area {
-    flex: 1; /* Ocupa todo el espacio de arriba */
+    height: 50vh;
     overflow-y: auto;
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    -webkit-overflow-scrolling: touch;
+    background: #121212;
+    flex-grow: 1; /* Que use todo lo que pueda arriba */
   }
 
-  /* ZONA INFERIOR: La carta y el reproductor (FIJOS) */
+  /* ZONA DE ABAJO: Forzamos que sea compacta */
   .game-sidebar {
-    flex-shrink: 0; /* No permite que se encoja ni se oculte */
+    height: 50vh; /* La otra mitad de la pantalla */
+    flex-shrink: 0;
     background: #181818;
-    border-top: 2px solid #282828;
-    padding: 10px;
-    padding-bottom: calc(
-      10px + env(safe-area-inset-bottom)
-    ); /* Espacio para el notch */
-    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.5);
+    border-top: 1px solid #333;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between; /* Reparte el espacio */
+    padding: 10px 10px calc(5px + env(safe-area-inset-bottom));
   }
 
-  /* AJUSTE DE LA CARTA: Fundamental para ganar espacio */
-  .card-scene {
-    width: 100px; /* Mucho más pequeña en móvil */
-    height: 140px;
-    margin: 5px 0;
-  }
-
+  /* ACHICAMOS TODO EL CONTENIDO INTERNO */
   .status-panel {
-    width: 100%;
-    margin-bottom: 5px;
+    margin: 0;
   }
 
-  /* Marcadores en una sola línea para ahorrar espacio vertical */
   .player-scores {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 5px;
     margin-bottom: 5px;
   }
 
   .p-badge {
-    font-size: 0.75rem;
-    padding: 4px 10px;
+    font-size: 0.7rem; /* Texto más pequeño */
+    padding: 3px 8px;
   }
 
   .message-display {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin: 2px 0;
   }
 
-  /* CONTROLES */
-  .controls-panel {
-    width: 100%;
+  /* LA CARTA: Si no la achicamos, nada funcionará */
+  .card-scene {
+    width: 90px !important; /* Mini carta para que quepa todo */
+    height: 130px !important;
+    margin: 2px auto !important;
   }
 
-  /* El botón de pasar turno también debe ser compacto */
-  .next-turn-btn {
-    padding: 10px;
-    font-size: 0.9rem;
-    margin-top: 5px;
+  /* REPRODUCTOR: Le quitamos márgenes sobrantes */
+  .controls-panel {
+    width: 100%;
+    margin-top: auto; /* Empuja el reproductor al final */
+  }
+
+  .spotify-player-container {
+    height: 80px;
   }
 }
 
