@@ -360,13 +360,6 @@ body {
     margin-top: auto; /* Empuja el reproductor al fondo del todo */
     width: 100%;
   }
-
-  .card-scene p {
-    display: none;
-  }
-  .song-info img {
-    display: none;
-  }
 }
 
 /* Esto asegura que el contenedor del SDK de Spotify tenga espacio */
