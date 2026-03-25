@@ -268,11 +268,14 @@ function App() {
         />
 
         <div className="controls-panel">
-          <SpotifyHandler
-            token={currentSong?.token}
-            uri={currentSong?.uri}
-            isPlaying={isPlaying}
-          />
+          {/* Renderizamos el handler siempre que el token exista, no dependamos de la canción entera */}
+          {currentSong?.token && (
+            <SpotifyHandler
+              token={currentSong.token}
+              uri={currentSong.uri}
+              isPlaying={isPlaying}
+            />
+          )}
 
           {showDetails && (
             <button

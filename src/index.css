@@ -384,3 +384,19 @@ body {
     padding: 5px 10px;
   }
 }
+
+/* Esto asegura que el contenedor del SDK de Spotify tenga espacio */
+.controls-panel {
+  min-height: 100px !important;
+  width: 100%;
+  display: block !important; /* Evita que desaparezca en móvil */
+  position: relative;
+  z-index: 999;
+}
+
+/* Ajuste específico para el reproductor dentro de la caja */
+.spotify-player-container {
+  width: 100%;
+  height: auto;
+  min-height: 80px;
+}
