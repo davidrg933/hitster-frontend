@@ -150,8 +150,18 @@ function App() {
   };
 
   const handleNextTurn = () => {
-    const nextIdx = (currentPlayerIdx + 1) % players.length;
-    drawNextSong(deck, nextIdx);
+    // 1. Primero ocultamos los detalles y la canción actual
+    setShowDetails(false);
+    setCurrentSong(null); // Esto limpia la carta inmediatamente
+    setIsPlaying(false); // Paramos el reproductor
+    setMessage("Preparando siguiente canción...");
+
+    // 2. Esperamos un instante (300ms) para que la UI se limpie
+    // y luego robamos la siguiente carta
+    setTimeout(() => {
+      const nextIdx = (currentPlayerIdx + 1) % players.length;
+      drawNextSong(deck, nextIdx);
+    }, 300);
   };
 
   // --- RENDERS ---
@@ -261,11 +271,18 @@ function App() {
           <small style={{ color: "#666" }}>Mazo: {deck.length} cartas</small>
         </div>
 
-        <GameCard
-          song={currentSong}
-          showDetails={showDetails}
-          isWrong={isWrong}
-        />
+        {/* Solo mostramos la carta si hay una canción y no estamos en la transición */}
+        {currentSong ? (
+          <GameCard
+            song={currentSong}
+            showDetails={showDetails}
+            isWrong={isWrong}
+          />
+        ) : (
+          <div className="card-placeholder">
+            <p>Cargando próxima carta...</p>
+          </div>
+        )}
 
         <div className="controls-panel">
           {/* Renderizamos el handler siempre que el token exista, no dependamos de la canción entera */}
