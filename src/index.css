@@ -379,6 +379,7 @@ body {
 
   .spotify-player-container {
     height: 80px;
+    margin-bottom: 10vh;
   }
 
   .card-scene p {
