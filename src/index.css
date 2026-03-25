@@ -316,72 +316,47 @@ body {
 @media (max-width: 768px) {
   .app-container-grid {
     display: flex;
-    flex-direction: column; /* Dejamos de usar columnas, ahora es una lista vertical */
-    height: 100vh;
-    overflow: hidden; /* Evitamos el scroll de toda la página */
+    flex-direction: column;
+    /* Usamos dvh para que Safari no corte el fondo */
+    height: 100dvh;
+    overflow: hidden;
   }
 
-  /* 1. El Sidebar pasa a ser la zona superior (fija) */
-  .game-sidebar {
-    grid-column: auto;
-    width: 100%;
-    height: auto;
-    max-height: 50vh; /* Ocupa como mucho la mitad de la pantalla */
-    border-left: none;
-    border-bottom: 2px solid #282828;
-    position: relative;
-    padding: 10px;
-    z-index: 10;
-    flex-shrink: 0; /* Que no se encoja */
-  }
-  .status-panel {
-    display: none;
-  }
-
-  /* Reducimos el tamaño de la carta en móvil para que quepa todo */
-  .card-scene {
-    width: 150px;
-    height: 220px;
-    margin: 10px auto;
-  }
-
-  .mystery-mark {
-    font-size: 40px;
-  }
-  .album-cover {
-    width: 80px;
-    height: 80px;
-  }
-
-  /* 2. Las líneas temporales pasan abajo con su propio scroll */
   .timelines-area {
-    grid-column: auto;
-    padding: 15px;
-    flex-grow: 1; /* Ocupa el resto del espacio */
+    flex: 1; /* Ocupa el espacio superior libre */
     overflow-y: auto;
+    padding: 10px;
     background: #121212;
   }
 
-  /* 3. Ajuste de las líneas temporales para que no ocupen tanto */
+  /* Reducimos el tamaño de las secciones de los jugadores para ganar sitio */
   .timeline-section {
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 5px;
+    margin-bottom: 10px;
   }
 
-  .timeline-display {
-    padding: 10px 5px;
+  .game-sidebar {
+    flex-shrink: 0;
+    background: #181818;
+    border-top: 2px solid #282828;
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom)); /* Espacio extra para el notch inferior */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
   }
 
-  /* Hacemos los botones de insertar un poco más grandes para dedos */
-  .insert-btn {
-    width: 45px;
-    height: 45px;
+  /* ACHICAMOS LA CARTA: Es la que suele empujar al reproductor hacia afuera */
+  .card-scene {
+    width: 100px;
+    height: 150px;
+    margin: 0 auto 10px auto;
   }
 
-  /* Ocultamos el marcador de puntos detallado para ganar espacio */
-  .p-badge {
-    font-size: 0.7rem;
-    padding: 5px 10px;
+  .controls-panel {
+    width: 100%;
+    /* Forzamos que el reproductor tenga altura suficiente para ver los botones */
+    min-height: 90px;
   }
 }
 
