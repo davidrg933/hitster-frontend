@@ -269,13 +269,6 @@ function App() {
 
         <div className="controls-panel">
           {/* Renderizamos el handler siempre que el token exista, no dependamos de la canción entera */}
-          {currentSong?.token && (
-            <SpotifyHandler
-              token={currentSong.token}
-              uri={currentSong.uri}
-              isPlaying={isPlaying}
-            />
-          )}
 
           {showDetails && (
             <button
@@ -284,6 +277,13 @@ function App() {
             >
               {isWrong ? "SIGUIENTE JUGADOR" : "CONTINUAR"}
             </button>
+          )}
+          {currentSong?.token && (
+            <SpotifyHandler
+              token={currentSong.token}
+              uri={currentSong.uri}
+              isPlaying={isPlaying}
+            />
           )}
         </div>
       </aside>

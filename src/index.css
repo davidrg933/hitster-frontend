@@ -330,56 +330,35 @@ body {
     flex-grow: 1; /* Que use todo lo que pueda arriba */
   }
 
-  /* ZONA DE ABAJO: Forzamos que sea compacta */
   .game-sidebar {
-    height: 50vh; /* La otra mitad de la pantalla */
-    flex-shrink: 0;
-    background: #181818;
-    border-top: 1px solid #333;
+    height: 55vh; /* Le damos un poco más de espacio a la zona de juego */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Reparte el espacio */
-    padding: 10px 10px calc(5px + env(safe-area-inset-bottom));
+    justify-content: flex-start; /* Alineamos al principio para controlar el orden */
+    padding: 10px;
+    position: relative;
   }
 
-  /* ACHICAMOS TODO EL CONTENIDO INTERNO */
-  .status-panel {
-    margin: 0;
-  }
-
-  .player-scores {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 5px;
-  }
-
-  .p-badge {
-    font-size: 0.7rem; /* Texto más pequeño */
-    padding: 3px 8px;
-  }
-
-  .message-display {
-    font-size: 0.8rem;
-    margin: 2px 0;
-  }
-
-  /* LA CARTA: Si no la achicamos, nada funcionará */
   .card-scene {
-    width: 90px !important; /* Mini carta para que quepa todo */
-    height: 130px !important;
-    margin: 2px auto !important;
+    width: 80px !important; /* La hacemos aún más pequeña para que quepa el botón */
+    height: 120px !important;
+    margin: 5px auto !important;
   }
 
-  /* REPRODUCTOR: Le quitamos márgenes sobrantes */
-  .controls-panel {
+  /* EL BOTÓN: Lo hacemos muy llamativo y nos aseguramos de que no se corte */
+  .next-turn-btn {
+    position: relative;
+    z-index: 9999;
     width: 100%;
-    margin-top: auto; /* Empuja el reproductor al final */
+    padding: 15px !important; /* Más grande para que sea fácil darle con el dedo */
+    margin-top: 10px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   }
 
-  .spotify-player-container {
-    height: 80px;
-    margin-bottom: 10vh;
+  .controls-panel {
+    margin-top: auto; /* Empuja el reproductor al fondo del todo */
+    width: 100%;
   }
 
   .card-scene p {
