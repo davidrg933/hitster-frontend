@@ -380,6 +380,13 @@ body {
   .spotify-player-container {
     height: 80px;
   }
+
+  .card-scene p {
+    display: none;
+  }
+  .song-info img {
+    display: none;
+  }
 }
 
 /* Esto asegura que el contenedor del SDK de Spotify tenga espacio */
