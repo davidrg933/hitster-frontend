@@ -323,7 +323,7 @@ body {
 
   /* ZONA DE ARRIBA: Ahora forzamos que use el 50% de la pantalla */
   .timelines-area {
-    height: 50vh;
+    height: 30vh;
     overflow-y: auto;
     padding: 10px;
     background: #121212;
