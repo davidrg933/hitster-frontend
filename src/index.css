@@ -412,3 +412,7 @@ body {
 .spotify-player-container {
   overflow: hidden;
 }
+
+._ContentRSWP img {
+  display: none !important; /* Oculta la carátula del álbum */
+}
